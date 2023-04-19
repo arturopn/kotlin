@@ -73,7 +73,7 @@ __webpack_require__.r(__webpack_exports__);
 
 class AppComponent {
     constructor() {
-        this.title = 'Angular 10 + Kotlin + Spring Boot 2 + Mongo DB CRUD ';
+        this.title = 'User Crud ';
     }
 }
 AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(); };
@@ -723,7 +723,7 @@ __webpack_require__.r(__webpack_exports__);
 class UserService {
     constructor(http) {
         this.http = http;
-        this.baseUrl = 'https://kotlin-production.up.railway.app/api/v1/users';
+        this.baseUrl = 'https://cors-anywhere.herokuapp.com/https://kotlin-production.up.railway.app/api/v1/users';
     }
     getUser(_id) {
         return this.http.get(`${this.baseUrl}/${_id}`);

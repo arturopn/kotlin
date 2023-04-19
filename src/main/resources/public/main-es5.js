@@ -122,7 +122,7 @@
       var AppComponent = function AppComponent() {
         _classCallCheck(this, AppComponent);
 
-        this.title = 'Angular 10 + Kotlin + Spring Boot 2 + Mongo DB CRUD ';
+        this.title = 'User Crud ';
       };
 
       AppComponent.ɵfac = function AppComponent_Factory(t) {
@@ -1497,7 +1497,7 @@
           _classCallCheck(this, UserService);
 
           this.http = http;
-          this.baseUrl = 'https://kotlin-production.up.railway.app/api/v1/users';
+          this.baseUrl = 'https://cors-anywhere.herokuapp.com/https://kotlin-production.up.railway.app/api/v1/users';
         }
 
         _createClass(UserService, [{
