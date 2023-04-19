@@ -1,11 +1,10 @@
+package com.knf.dev
+
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
-import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder
-import org.springframework.context.annotation.Configuration
 import org.springframework.web.filter.CorsFilter
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 import org.springframework.web.cors.CorsConfiguration
@@ -22,7 +21,6 @@ fun main(args: Array<String>) {
 
 @Configuration
 class WebConfig : WebMvcConfigurer {
-
     override fun addResourceHandlers(registry: ResourceHandlerRegistry) {
         registry.addResourceHandler("/**")
             .addResourceLocations("classpath:/public/")
@@ -33,10 +31,14 @@ class WebConfig : WebMvcConfigurer {
     fun corsFilter(): CorsFilter {
         val source = UrlBasedCorsConfigurationSource()
         val config = CorsConfiguration()
-        config.allowCredentials = true
         config.addAllowedOrigin("*")
+        config.addAllowedMethod("GET")
+        config.addAllowedMethod("POST")
+        config.addAllowedMethod("PUT")
+        config.addAllowedMethod("DELETE")
+        config.addAllowedMethod("OPTIONS")
         config.addAllowedHeader("*")
-        config.addAllowedMethod("*")
+        config.addExposedHeader("Authorization")
         source.registerCorsConfiguration("/**", config)
         return CorsFilter(source)
     }
