@@ -8,6 +8,7 @@ class SpringbootKotlinCrudApplication
 
 fun main(args: Array<String>) {
 	runApplication<SpringbootKotlinCrudApplication>(*args){
-		setDefaultProperties(mapOf("server.address" to "0.0.0.0"))
+		setDefaultProperties(mapOf("server.address" to "0.0.0.0"));
+		app.use("/", express.static(path.join(__dirname, "angularfront")));
 	}
 }
