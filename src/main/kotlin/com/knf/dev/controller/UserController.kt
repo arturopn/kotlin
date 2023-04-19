@@ -11,7 +11,7 @@ import java.util.*
 
 @RestController
 @RequestMapping("/api/v1/")
-@CrossOrigin(origins = arrayOf("https://best-leather-production.up.railway.app/"))
+@CrossOrigin(origins = arrayOf("http://localhost:4200"))
 class UserController(private val userRepository: UserRepository) {
 
     @GetMapping("/users")
