@@ -11,7 +11,7 @@ import java.util.*
 
 @RestController
 @RequestMapping("/api/v1/")
-@CrossOrigin(origins = arrayOf("http://localhost:4200"))
+@CrossOrigin(origins = arrayOf("https://kotlin-production.up.railway.app"))
 class UserController(private val userRepository: UserRepository) {
 
     @GetMapping("/users")
