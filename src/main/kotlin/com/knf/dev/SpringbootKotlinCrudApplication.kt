@@ -2,27 +2,39 @@ package com.knf.dev
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
-import org.springframework.http.ResponseEntity
-import org.springframework.http.HttpStatus
-import java.nio.file.Paths
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+import org.springframework.context.annotation.Configuration
+
 
 @SpringBootApplication
 class SpringbootKotlinCrudApplication
 
 fun main(args: Array<String>) {
-	runApplication<SpringbootKotlinCrudApplication>(*args) {
-		setDefaultProperties(mapOf("server.address" to "0.0.0.0"))
-	}
-	
-	// Serve static files from the "dist" folder
-	@RestController
-	class StaticFileController {
-	    @GetMapping("/{path:[^\\.]*}")
-	    fun serveStaticFile(): ResponseEntity<Any> {
-	        val indexPath = Paths.get("angularfront/index.html")
-	        return ResponseEntity.ok().body(indexPath.toFile().readText())
-	    }
-	}
+    runApplication<SpringbootKotlinCrudApplication>(*args) {
+        setDefaultProperties(mapOf("server.address" to "0.0.0.0"))
+    }
+}
+
+/*@RestController
+class StaticFileController {
+    @GetMapping("/{path:[^\\.]*}")
+    fun serveStaticFile(@PathVariable path: String): ResponseEntity<Any> {
+        val indexPath = Paths.get("src/angularfront/index.html")
+        return if (indexPath.toFile().exists()) {
+            ResponseEntity.ok().body(indexPath.toFile().readText())
+        } else {
+            ResponseEntity.status(HttpStatus.NOT_FOUND).body("File not found")
+        }
+    }
+}*/
+
+@Configuration
+class WebConfig : WebMvcConfigurer {
+    override fun addResourceHandlers(registry: ResourceHandlerRegistry) {
+        registry.addResourceHandler("/**")
+            .addResourceLocations("classpath:/public/")
+            .setCachePeriod(0)
+    }
 }
