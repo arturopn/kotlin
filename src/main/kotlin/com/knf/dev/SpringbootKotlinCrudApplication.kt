@@ -7,5 +7,7 @@ import org.springframework.boot.runApplication
 class SpringbootKotlinCrudApplication
 
 fun main(args: Array<String>) {
-	runApplication<SpringbootKotlinCrudApplication>(*args)
+	runApplication<SpringbootKotlinCrudApplication>(*args){
+		setDefaultProperties(mapOf("server.address" to "0.0.0.0"))
+	}
 }
