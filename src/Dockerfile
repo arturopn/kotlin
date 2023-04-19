@@ -10,6 +10,6 @@ RUN mvn -f /home/app/pom.xml clean package
 # Package stage
 #
 FROM openjdk:11-jre-slim
-COPY --from=build /home/app/target/getyourway-0.0.1-SNAPSHOT.jar /usr/local/lib/demo.jar
+COPY --from=build /home/app/target/springboot-kotlin-crud-0.0.1-SNAPSHOT.jar /usr/local/lib/demo.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","-Dserver.address=0.0.0.0","/usr/local/lib/demo.jar"]
